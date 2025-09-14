@@ -13,7 +13,7 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='fam',
+    maintainer='Fam Shihata',
     maintainer_email='fam@awadlouis.com',
     description='TODO: Package description',
     license='TODO: License declaration',
