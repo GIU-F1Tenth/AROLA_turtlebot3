@@ -136,6 +136,7 @@ simple_planner:
     invert: false                    # Invert the order of waypoints
     frame_id: "map"                  # Frame ID for the waypoints
     publish_rate: 1.0                # Publish rate for path messages
+    path_topic: "/pp_path"           # Topic to publish the planned path
 
 # ==============================================================================
 # Watchdog Configuration
