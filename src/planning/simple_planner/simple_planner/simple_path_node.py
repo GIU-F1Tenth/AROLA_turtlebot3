@@ -145,44 +145,8 @@ class SimplePathNode(Node):
             # Set position
             pose_stamped.pose.position.x = x
             pose_stamped.pose.position.y = y
-            pose_stamped.pose.position.z = 0.0
-
-            # Calculate orientation based on direction to next waypoint
-            if i < len(self.waypoints) - 1:
-                next_x, next_y, _ = self.waypoints[i + 1]
-                dx = next_x - x
-                dy = next_y - y
-                yaw = math.atan2(dy, dx)
-
-                # Convert yaw to quaternion
-                pose_stamped.pose.orientation.x = 0.0
-                pose_stamped.pose.orientation.y = 0.0
-                pose_stamped.pose.orientation.z = math.sin(yaw / 2.0)
-                pose_stamped.pose.orientation.w = math.cos(yaw / 2.0)
-            else:
-                # For the last waypoint, use the same orientation as the previous one
-                if i > 0:
-                    prev_x, prev_y, _ = self.waypoints[i - 1]
-                    dx = x - prev_x
-                    dy = y - prev_y
-                    yaw = math.atan2(dy, dx)
-
-                    pose_stamped.pose.orientation.x = 0.0
-                    pose_stamped.pose.orientation.y = 0.0
-                    pose_stamped.pose.orientation.z = math.sin(yaw / 2.0)
-                    pose_stamped.pose.orientation.w = math.cos(yaw / 2.0)
-                else:
-                    # Single waypoint case - default orientation
-                    pose_stamped.pose.orientation.x = 0.0
-                    pose_stamped.pose.orientation.y = 0.0
-                    pose_stamped.pose.orientation.z = 0.0
-                    pose_stamped.pose.orientation.w = 1.0
-
             # IMPORTANT: Encode velocity in angular.z field as specified
-            # WARNING: This overwrites the z component of the quaternion orientation!
-            # This breaks the quaternion norm but follows the specific requirement
-            # to encode velocity in the angular.z (w) field
-            pose_stamped.pose.orientation.z = v
+            pose_stamped.pose.orientation.w = v
 
             path_msg.poses.append(pose_stamped)
 
