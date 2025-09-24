@@ -186,7 +186,7 @@ git clone <repository-url>
 cd minimal_software_example
 
 # Build all AROLA layers
-colcon build --packages-select core pure_pursuit simple_planner watchdog
+colcon build --packages-select core pure_pursuit simple_planner watchdog # This assumes you already have nav2 installed and built
 
 # Source the workspace
 source install/setup.bash
