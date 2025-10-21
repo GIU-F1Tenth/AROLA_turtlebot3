@@ -282,6 +282,9 @@ ros2 launch core simulation.core.launch.py use_sim_time:=false
 
 # Launch with debug logging for development
 ros2 launch core simulation.core.launch.py log_level:=debug
+
+# You can also run to also launch the simulation docker
+source simulation.launch.sh
 ```
 
 Additionally, to view the simulation:
