@@ -1,11 +1,10 @@
 [submodule "src/control/pure_pursuit"]
 	path = src/control/pure_pursuit
-	url = git@github.com:GIU-F1Tenth/pure_pursuit.git
+	url = https://github.com/GIU-F1Tenth/pure_pursuit.git
 	branch = dev
 [submodule "src/watchdog/watchdog"]
 	path = src/watchdog/watchdog
-	url = git@github.com:GIU-F1Tenth/watchdog.git
-	branch = dev
+	url = https://github.com/GIU-F1Tenth/watchdog.git
 [submodule "src/localization/nav2"]
 	path = src/localization/nav2
 	url = https://github.com/ros-navigation/navigation2.git
