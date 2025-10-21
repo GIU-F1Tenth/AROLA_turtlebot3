@@ -51,9 +51,9 @@ def generate_launch_description():
     )
 
     lidar_driver_node = Node(
-        package='urg_node2',
-        executable='urg_node2_driver',
-        name='urg_node2',
+        package='urg_node',
+        executable='urg_node_driver',
+        name='urg_node',
         output='screen',
         parameters=[
             config_file_path

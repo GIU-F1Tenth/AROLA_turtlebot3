@@ -5,6 +5,3 @@
 [submodule "src/watchdog/watchdog"]
 	path = src/watchdog/watchdog
 	url = https://github.com/GIU-F1Tenth/watchdog.git
-[submodule "src/drivers/urg_node2"]
-	path = src/drivers/urg_node2
-	url = https://github.com/Hokuyo-aut/urg_node2

@@ -202,6 +202,11 @@ sudo apt install \
 pip install pandas==2.3.3
 ```
 
+If you wish to run the stack on the actual RoboRacer vechile, additionally run
+```bash
+sudo apt install ros-humble-urg-node
+```
+
 ### 2. Build the AROLA System
 ```bash
 # Clone the repository
