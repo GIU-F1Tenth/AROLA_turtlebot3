@@ -213,6 +213,9 @@ sudo apt install ros-humble-urg-node
 git clone https://github.com/GIU-F1Tenth/minimal_sofware_example.git
 cd minimal_software_example
 
+# Update submodules 
+git submodule update --init --recursive
+
 # Build all AROLA layers
 colcon build
 
