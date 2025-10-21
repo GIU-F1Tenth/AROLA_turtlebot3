@@ -179,6 +179,7 @@ git
 - Ubuntu 22.04 (recommended)
 - Python 3.8 or higher
 - Colcon build tools
+- Docker 
 
 ### 1. Install dependencies
 
@@ -252,6 +253,8 @@ watchdog:
 ```
 
 ### 4. Launch the AROLA System
+
+For the actual vechile, run:
 ```bash
 # Launch the complete AROLA stack
 ros2 launch core core.launch.py
@@ -264,6 +267,30 @@ ros2 launch core core.launch.py use_sim_time:=true
 
 # Launch with debug logging for development
 ros2 launch core core.launch.py log_level:=debug
+```
+
+For the simulation, run: 
+```bash
+# Launch the complete AROLA stack
+ros2 launch core simulation.core.launch.py
+
+# Launch with custom configuration
+ros2 launch core simulation.core.launch.py config_file:=/path/to/custom/params.yaml
+
+# Launch with simulation time for Gazebo/simulation
+ros2 launch core simulation.core.launch.py use_sim_time:=false
+
+# Launch with debug logging for development
+ros2 launch core simulation.core.launch.py log_level:=debug
+```
+
+Additionally, to view the simulation:
+```bash 
+docker exec -it f1tenth_gym_ros-sim-1 /bin/bash
+
+source /opt/ros/foxy/setup.bash
+source install/local_setup.bash
+ros2 launch f1tenth_gym_ros gym_bridge_launch.py
 ```
 
 ## AROLA Configuration Philosophy
