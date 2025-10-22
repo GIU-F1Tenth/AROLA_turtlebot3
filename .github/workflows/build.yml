@@ -46,7 +46,6 @@ jobs:
     
     - name: Source ROS2 workspace
       run: |
-        echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
         . /opt/ros/humble/setup.bash
     
     - name: Build workspace
