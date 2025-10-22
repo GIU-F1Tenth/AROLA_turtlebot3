@@ -2,11 +2,46 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![ROS2 Humble](https://img.shields.io/badge/ROS2-Humble-blue.svg)](https://docs.ros.org/en/humble/)
+[![CI/CD](https://img.shields.io/badge/CI%2FCD-passing-brightgreen.svg)](https://github.com/GIU-F1Tenth/minimal_sofware_example/actions)
 
-## Overview
-- **Core Package**: System integration, centralized launch management, and configuration consolidation
-- **Launch System**: Orchestrates all system components with proper startup sequencing
-- **Configuration Management**: Unified parameter management across all layerso/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+## Table of Contents
+
+- [Overview](#overview)
+- [AROLA Layered Architecture](#arola-layered-architecture)
+  - [Layer Descriptions](#layer-descriptions)
+- [Repository Structure](#repository-structure)
+- [AROLA Components](#arola-components)
+  - [Sensor Layer Components](#sensor-layer-components)
+  - [Preprocessing Layer Components](#preprocessing-layer-components)
+  - [Perception Layer Components](#perception-layer-components)
+  - [Mapping & Localization Layer Components](#mapping--localization-layer-components)
+  - [Planning Layer Components](#planning-layer-components)
+  - [Behavior Layer Components](#behavior-layer-components)
+  - [Control Layer Components](#control-layer-components)
+  - [Actuator Layer Components](#actuator-layer-components)
+- [AROLA Architecture Benefits](#arola-architecture-benefits)
+- [Quick Start Guide](#quick-start-guide)
+  - [Prerequisites](#prerequisites)
+  - [1. Install dependencies](#1-install-dependencies)
+  - [2. Build the AROLA System](#2-build-the-arola-system)
+  - [3. Launch the AROLA System](#3-launch-the-arola-system)
+- [AROLA Configuration Philosophy](#arola-configuration-philosophy)
+  - [Configuration Layer Mapping](#configuration-layer-mapping)
+- [CSV Waypoint Format](#csv-waypoint-format)
+- [AROLA Startup Sequence](#arola-startup-sequence)
+- [AROLA Development & Debugging](#arola-development--debugging)
+  - [Layer-by-Layer Debugging](#layer-by-layer-debugging)
+  - [AROLA System Status Commands](#arola-system-status-commands)
+  - [Common AROLA Issues & Solutions](#common-arola-issues--solutions)
+- [AROLA Dependencies](#arola-dependencies)
+  - [Core Dependencies](#core-dependencies)
+  - [Layer-Specific Dependencies](#layer-specific-dependencies)
+- [Getting Involved](#getting-involved)
+  - [Contributing to AROLA](#contributing-to-arola)
+  - [Development Guidelines](#development-guidelines)
+- [Community & Support](#community--support)
+- [License](#license)
+- [About F1TENTH AROLA](#about-f1tenth-arola)
 
 ## Overview
 
@@ -39,9 +74,9 @@ Our architecture follows a hierarchical design with clear separation between dif
 │                (Complex Thinking & Behavior)                |
 ├─────────────────────────────────────────────────────────────┤
 │                    CONTROL LAYER                            │
-│                (Vechile Control System)                     │
+│                (Vehicle Control System)                     │
 ├─────────────────────────────────────────────────────────────┤
-│                    ACCUATOR LAYER                           │
+│                    ACTUATOR LAYER                           │
 │                   (Physical layer)                          │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -148,8 +183,7 @@ minimal_software_example/
 ### Actuator Layer Components
 - **Drive Command Interface**
   - Function: Physical hardware control and motor/servo command execution
-  - Key Topics: Receives `/drive` commands for steering and throttle control
-git 
+  - Key Topics: Receives `/drive` commands for steering and throttle control 
 ## AROLA Architecture Benefits
 
 ### 🎯 **Modularity & Scalability**
@@ -203,7 +237,7 @@ sudo apt install \
 pip install pandas==2.3.3
 ```
 
-If you wish to run the stack on the actual RoboRacer vechile, additionally run
+If you wish to run the stack on the actual RoboRacer vehicle, additionally run
 ```bash
 sudo apt install ros-humble-urg-node
 ```
@@ -226,7 +260,7 @@ source install/setup.bash
 
 ### 3. Launch the AROLA System
 
-For the actual vechile, run:
+For the actual vehicle, run:
 ```bash
 ros2 launch core core.launch.py
 ```
