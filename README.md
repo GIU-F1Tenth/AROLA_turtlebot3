@@ -256,32 +256,13 @@ watchdog:
 
 For the actual vechile, run:
 ```bash
-# Launch the complete AROLA stack
 ros2 launch core core.launch.py
-
-# Launch with custom configuration
-ros2 launch core core.launch.py config_file:=/path/to/custom/params.yaml
-
-# Launch with simulation time for Gazebo/simulation
-ros2 launch core core.launch.py use_sim_time:=true
-
-# Launch with debug logging for development
-ros2 launch core core.launch.py log_level:=debug
 ```
 
 For the simulation, run: 
 ```bash
 # Launch the complete AROLA stack
 ros2 launch core simulation.core.launch.py
-
-# Launch with custom configuration
-ros2 launch core simulation.core.launch.py config_file:=/path/to/custom/params.yaml
-
-# Launch with simulation time for Gazebo/simulation
-ros2 launch core simulation.core.launch.py use_sim_time:=false
-
-# Launch with debug logging for development
-ros2 launch core simulation.core.launch.py log_level:=debug
 
 # You can also run to also launch the simulation docker
 source simulation.launch.sh
