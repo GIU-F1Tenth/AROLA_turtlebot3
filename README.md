@@ -270,15 +270,17 @@ For the simulation, run:
 ```bash
 # Launch the complete AROLA stack
 ros2 launch core simulation.core.launch.py
-
-# You can also run the simulation docker
-source simulation.launch.sh
 ```
 
-Additionally, to view the simulation:
+Additionally, to open the simulation:
 ```bash 
+cd f1tenth_gym_ros
+sudo docker compose up -d
 docker exec -it f1tenth_gym_ros-sim-1 /bin/bash
+```
 
+Inside the simulation terminal, run:
+```bash
 source /opt/ros/foxy/setup.bash
 source install/local_setup.bash
 ros2 launch f1tenth_gym_ros gym_bridge_launch.py
