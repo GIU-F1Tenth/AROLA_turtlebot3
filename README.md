@@ -286,6 +286,8 @@ source install/local_setup.bash
 ros2 launch f1tenth_gym_ros gym_bridge_launch.py
 ```
 
+The simulation will appear at http://localhost:8080/vnc.html
+
 ## AROLA Configuration Philosophy
 
 The AROLA architecture employs **centralized configuration management** through `src/core/config/params.yaml`, eliminating configuration sprawl and ensuring consistency across all layers.
