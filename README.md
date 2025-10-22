@@ -1,12 +1,12 @@
 # F1TENTH AROLA Architecture - Minimal Software Example
 
-[![License: MIT](https://img.shi## AROLA Components
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![ROS2 Humble](https://img.shields.io/badge/ROS2-Humble-blue.svg)](https://docs.ros.org/en/humble/)
 
-### Core Layer Components
+## Overview
 - **Core Package**: System integration, centralized launch management, and configuration consolidation
 - **Launch System**: Orchestrates all system components with proper startup sequencing
 - **Configuration Management**: Unified parameter management across all layerso/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![ROS2 Humble](https://img.shields.io/badge/ROS2-Humble-blue.svg)](https://docs.ros.org/en/humble/)
 
 ## Overview
 
@@ -224,35 +224,7 @@ colcon build
 source install/setup.bash
 ```
 
-### 3. Configure AROLA Parameters
-The AROLA architecture uses centralized configuration in `src/core/config/params.yaml`:
-
-```yaml
-# Core system parameters
-use_sim_time: false
-robot_base_frame: "base_link"
-
-# Control layer parameters
-pure_pursuit:
-  lookahead_distance: 1.5
-  velocity_max: 3.0
-
-# Drivers layer parameters
-urg_node2:
-  ip_address: "192.168.1.10"
-  port: 10940
-
-# Planning layer parameters
-simple_planner:
-  csv_path: "/path/to/waypoints.csv"
-
-# Watchdog layer parameters
-watchdog:
-  monitor_frequency: 10.0
-  timeout_threshold: 2.0
-```
-
-### 4. Launch the AROLA System
+### 3. Launch the AROLA System
 
 For the actual vechile, run:
 ```bash
@@ -264,7 +236,7 @@ For the simulation, run:
 # Launch the complete AROLA stack
 ros2 launch core simulation.core.launch.py
 
-# You can also run to also launch the simulation docker
+# You can also run the simulation docker
 source simulation.launch.sh
 ```
 
