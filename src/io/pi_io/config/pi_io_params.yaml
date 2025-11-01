@@ -1,0 +1,26 @@
+# ==============================================================================
+# Raspberry Pi IO Node Configuration
+# Lightweight configuration for TurtleBot3 Burger hardware interface
+# ==============================================================================
+
+pi_io_node:
+  ros__parameters:
+    # Watchdog safety - stops motors if no command received
+    watchdog_timeout: 0.5             # seconds
+    
+    # Topic names (TurtleBot3 standard topics)
+    cmd_vel_topic: "/cmd_vel"
+    odom_topic: "/odom"
+    scan_topic: "/scan"
+    imu_topic: "/imu"
+    
+    # Publishing rate
+    publish_rate: 50.0                # Hz (odometry and sensor data)
+    use_imu: true                     # Set false if no IMU available
+    
+    # TurtleBot3 Burger Physical Parameters
+    # DO NOT CHANGE unless you have custom hardware
+    wheel_radius: 0.033               # meters (DYNAMIXEL wheel)
+    wheel_separation: 0.160           # meters (distance between wheels)
+    max_linear_velocity: 0.22         # m/s (max safe speed)
+    max_angular_velocity: 2.84        # rad/s (max rotation rate)
