@@ -206,7 +206,58 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-# Ros2 
+# ROS2 / Colcon
 build/
 install/
 log/
+.colcon_install_layout
+COLCON_IGNORE
+
+# ROS2 bag files
+*.bag
+*.db3
+*.db3-shm
+*.db3-wal
+
+# Gazebo
+.gazebo/
+
+# Temporary and backup files
+*~
+*.swp
+*.swo
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
+
+# IDE and Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.project
+.cproject
+.settings/
+
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+
+# Documentation build
+docs/_build/
+docs/_static/
+docs/_templates/
+
+# Coverage and testing
+.coverage
+htmlcov/
+.pytest_cache/
+*.cover
