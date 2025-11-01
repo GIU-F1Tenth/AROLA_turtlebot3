@@ -1,0 +1,178 @@
+# ==============================================================================
+# TurtleBot3 Burger Configuration for Distributed Architecture
+# PC-side compute nodes + Raspberry Pi IO node
+# ==============================================================================
+
+# ==============================================================================
+# Ackermann to Twist Converter Configuration
+# Converts Ackermann steering commands to differential drive Twist
+# ==============================================================================
+ackermann_to_twist_node:
+  ros__parameters:
+    ackermann_topic: "/drive"
+    twist_topic: "/cmd_vel"
+    wheelbase: 0.160                  # TurtleBot3 Burger wheelbase (meters)
+    max_steering_angle: 0.5           # Maximum steering angle (radians)
+
+# ==============================================================================
+# TurtleBot3 Odometry to Base Link Transform Node
+# Publishes TF transforms from map to odom and odom to base_footprint
+# ==============================================================================
+odom_to_base_link_node:
+  ros__parameters:
+    # Topic Configuration
+    topics:
+      odom_topic: "/odom"             # TurtleBot3 standard odometry topic
+    
+    # Frame Configuration
+    frames:
+      map_frame: "map"
+      odom_frame: "odom"
+      base_link_frame: "base_footprint"  # TurtleBot3 standard frame
+
+# ==============================================================================
+# Pure Pursuit Controller Configuration (Adapted for TurtleBot3)
+# Controls trajectory following with Ackermann output (converted to Twist)
+# ==============================================================================
+pure_pursuit_node:
+  ros__parameters:
+    # Lookahead Distance Parameters (adjusted for slower TurtleBot3)
+    max_lookahead_distance: 0.8      # Reduced for TurtleBot3 scale
+    min_lookahead_distance: 0.3      # Reduced for TurtleBot3 scale
+    
+    # Velocity Control Parameters (TurtleBot3 Burger limits)
+    max_velocity: 0.22                # TurtleBot3 Burger max linear velocity (m/s)
+    min_velocity: 0.05                # Minimum velocity for smooth control
+    vel_division_factor: 1.0
+    skidding_velocity_thresh: 0.1
+    
+    # Control Parameters
+    kp: 0.8                           # Increased P gain for differential drive
+    kd: 0.5                           # Adjusted D gain
+    k_sigmoid: 5.0                    # Velocity control sigmoid steepness
+    
+    # Topic Names (TurtleBot3 conventions)
+    cmd_vel_topic: "/drive"           # Ackermann output (converted to Twist)
+    odometry_topic: "/odom"           # TurtleBot3 odometry
+    joy_topic: "/joy"
+    pause_topic: "/pause"
+    path_topic: "/pp_path"
+    tf_target: "map"
+    tf_source: "base_scan"            # TurtleBot3 LIDAR frame
+    
+    # Timer and Processing Parameters
+    control_frequency: 50.0           # Control loop frequency (Hz)
+    tf_timeout: 0.5
+    marker_resolution: 60
+    
+    # Queue Sizes
+    subscriber_queue_size: 10
+    publisher_queue_size: 10
+
+# ==============================================================================
+# AMCL Localization Configuration (TurtleBot3 Optimized)
+# Adaptive Monte Carlo Localization for pose estimation
+# ==============================================================================
+amcl:
+  ros__parameters:
+    use_sim_time: false
+    
+    # Motion Model Parameters (optimized for differential drive)
+    alpha1: 0.2
+    alpha2: 0.2
+    alpha3: 0.2
+    alpha4: 0.2
+    alpha5: 0.1                       # Lower strafe noise for diff drive
+    
+    # Frame Configuration (TurtleBot3 frames)
+    base_frame_id: "base_footprint"
+    global_frame_id: "map"
+    odom_frame_id: "odom"
+    
+    # Laser Model Parameters (TurtleBot3 LDS-01/02)
+    beam_skip_distance: 0.5
+    beam_skip_error_threshold: 0.9
+    beam_skip_threshold: 0.3
+    do_beamskip: false
+    lambda_short: 0.1
+    laser_likelihood_max_dist: 2.0
+    laser_max_range: 3.5              # TurtleBot3 LDS max range
+    laser_min_range: 0.12             # TurtleBot3 LDS min range
+    laser_model_type: "likelihood_field"
+    max_beams: 360                    # TurtleBot3 LDS has 360 points
+    
+    # Particle Filter Parameters
+    max_particles: 2000
+    min_particles: 500
+    pf_err: 0.05
+    pf_z: 0.99
+    recovery_alpha_fast: 0.0
+    recovery_alpha_slow: 0.0
+    resample_interval: 1
+    
+    # Motion Model Type
+    robot_model_type: "nav2_amcl::DifferentialMotionModel"
+    
+    # Update Parameters
+    save_pose_rate: 0.5
+    tf_broadcast: true
+    transform_tolerance: 1.0
+    update_min_a: 0.15                # Adjusted for TurtleBot3 angular velocity
+    update_min_d: 0.15                # Adjusted for TurtleBot3 linear velocity
+    
+    # Likelihood Field Parameters
+    sigma_hit: 0.2
+    z_hit: 0.5
+    z_max: 0.05
+    z_rand: 0.5
+    z_short: 0.05
+    
+    # Topic Configuration
+    scan_topic: "/scan"               # TurtleBot3 standard scan topic
+
+# ==============================================================================
+# Simple Planner Configuration
+# Publishes waypoint paths for trajectory following
+# ==============================================================================
+simple_planner:
+  ros__parameters:
+    csv_path: ''                      # Set at launch time
+    invert: false
+    frame_id: 'map'
+    publish_rate: 1.0
+    path_topic: '/pp_path'
+
+# ==============================================================================
+# Watchdog Configuration
+# Safety monitor for autonomous operation
+# ==============================================================================
+watchdog_node:
+  ros__parameters:
+    timeout: 1.0                      # Watchdog timeout (seconds)
+    cmd_vel_topic: "/cmd_vel"         # Monitor final cmd_vel topic
+    safety_topic: "/emergency_stop"
+    
+# ==============================================================================
+# Raspberry Pi IO Node Configuration
+# Lightweight node for sensor publishing and motor control
+# ==============================================================================
+pi_io_node:
+  ros__parameters:
+    # Watchdog safety
+    watchdog_timeout: 0.5             # Stop motors if no cmd for 0.5s
+    
+    # Topic names
+    cmd_vel_topic: "/cmd_vel"
+    odom_topic: "/odom"
+    scan_topic: "/scan"
+    imu_topic: "/imu"
+    
+    # Publishing rate
+    publish_rate: 50.0                # 50 Hz odometry/sensor publishing
+    use_imu: true
+    
+    # TurtleBot3 Burger Physical Parameters
+    wheel_radius: 0.033               # meters
+    wheel_separation: 0.160           # meters (wheelbase)
+    max_linear_velocity: 0.22         # m/s
+    max_angular_velocity: 2.84        # rad/s
