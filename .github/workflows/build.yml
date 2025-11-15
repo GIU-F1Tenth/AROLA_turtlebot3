@@ -7,12 +7,20 @@ on:
     branches: [ main, dev ]
   workflow_dispatch:
 
+
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-20.04, ubuntu-22.04]
+    runs-on: ${{ matrix.os }}
     container:
       image: ros:humble-ros-base
-    
+    defaults:
+      run:
+        shell: bash
+        
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
