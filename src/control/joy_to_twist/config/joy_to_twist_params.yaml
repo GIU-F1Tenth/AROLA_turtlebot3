@@ -1,0 +1,29 @@
+joy_to_twist_node:
+  ros__parameters:
+    # Topic names
+    joy_topic: "/joy"
+    cmd_vel_topic: "/cmd_vel"
+    enable_topic: "/joy_enable"
+    
+    # Joystick axes mapping (standard gamepad)
+    # Logitech F710/Xbox Controller:
+    # - Left stick: axis 0 (horizontal), axis 1 (vertical)
+    # - Right stick: axis 3 (horizontal), axis 4 (vertical)
+    axis_linear: 1   # Left stick vertical (forward/backward)
+    axis_angular: 0  # Left stick horizontal (left/right turn)
+    
+    # Button mapping (standard gamepad)
+    # Logitech F710/Xbox Controller buttons:
+    # 0: A, 1: B, 2: X, 3: Y, 4: LB, 5: RB, 6: Back, 7: Start
+    enable_button: 4  # LB button (must hold to enable movement)
+    turbo_button: 5   # RB button (turbo mode - higher speed)
+    stop_button: 1    # B button (emergency stop - immediately stops the robot)
+    
+    # Velocity scaling (m/s and rad/s)
+    scale_linear: 0.22        # Normal max linear velocity (TurtleBot3 default: ~0.22 m/s)
+    scale_angular: 2.84       # Normal max angular velocity (TurtleBot3 default: ~2.84 rad/s)
+    scale_linear_turbo: 0.5   # Turbo max linear velocity
+    scale_angular_turbo: 3.5  # Turbo max angular velocity
+    
+    # Deadzone to prevent joystick drift
+    deadzone: 0.1
