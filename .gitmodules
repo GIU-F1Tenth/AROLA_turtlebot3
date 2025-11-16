@@ -1,7 +1,6 @@
 [submodule "src/control/pure_pursuit"]
 	path = src/control/pure_pursuit
 	url = https://github.com/GIU-F1Tenth/pure_pursuit.git
-	branch = dev
 [submodule "src/watchdog/watchdog"]
 	path = src/watchdog/watchdog
 	url = https://github.com/GIU-F1Tenth/watchdog.git

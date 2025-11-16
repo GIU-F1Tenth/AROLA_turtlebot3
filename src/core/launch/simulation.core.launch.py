@@ -32,7 +32,7 @@ def generate_launch_description():
     )
     declare_use_sim_time_arg = DeclareLaunchArgument(
         'use_sim_time',
-        default_value='true',  # Changed to true for simulation
+        default_value='false',  # Changed to true for simulation
         description='Use simulation time if true (default: true for simulation)'
     )
     declare_log_level_arg = DeclareLaunchArgument(
