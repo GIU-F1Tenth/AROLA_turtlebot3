@@ -11,3 +11,6 @@
 [submodule "src/monitor/race_monitor"]
 	path = src/monitor/race_monitor
 	url = https://github.com/GIU-F1Tenth/race_monitor.git
+[submodule "src/control/gap_follower"]
+	path = src/control/gap_follower
+	url = https://github.com/GIU-F1Tenth/gap_follower
