@@ -107,13 +107,6 @@ minimal_software_example/
 │   │       ├── config/
 │   │       └── pure_pursuit/
 │   │
-│   ├── localization/           # LOCALIZATION LAYER
-│   │   └── nav2/              # Advanced localization stack
-│   │       ├── nav2_amcl/     # Adaptive Monte Carlo Localization
-│   │       ├── nav2_controller/
-│   │       ├── nav2_costmap_2d/
-│   │       └── [25+ nav2 packages]
-│   │
 │   ├── planning/               # PLANNING LAYER
 │   │   └── simple_planner/    # Waypoint-based path planning
 │   │       ├── config/
@@ -367,7 +360,7 @@ The AROLA architecture follows a carefully orchestrated startup sequence to ensu
 4. CONTROL LAYER     → Motion control and trajectory following
    └── Pure Pursuit  → Controller activation for vehicle motion
 
-5. WATCHDOG LAYER    → Safety monitoring (started last)
+5. WATCHDOG          → Safety monitoring (started last)
    └── System Monitor → Comprehensive health monitoring activation
 ```
 
@@ -411,13 +404,6 @@ ros2 topic hz /pp_path
 ros2 topic echo /drive
 ros2 topic echo /odom
 # Verify trajectory following performance
-```
-
-#### **Watchdog Layer Debugging**
-```bash
-# System health monitoring
-ros2 topic echo /watchdog/system/status
-ros2 service call /watchdog/get_system_health
 ```
 
 ### AROLA System Status Commands
